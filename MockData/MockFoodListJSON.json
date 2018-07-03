@@ -1,0 +1,14 @@
+[
+  {
+    "name" : "soup",
+    "consumePeriod" : "morning"
+  },
+  {
+    "name" : "bannana",
+    "consumePeriod" : "afternoon"
+  },
+  {
+    "name" : "whickey",
+    "consumePeriod" : "evening"
+  }
+]

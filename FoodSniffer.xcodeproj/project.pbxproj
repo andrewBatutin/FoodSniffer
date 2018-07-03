@@ -12,6 +12,7 @@
 		00D42CED20EBB87100147AF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00D42CEB20EBB87100147AF0 /* Main.storyboard */; };
 		00D42CEF20EBB87200147AF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00D42CEE20EBB87200147AF0 /* Assets.xcassets */; };
 		00D42CF220EBB87200147AF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00D42CF020EBB87200147AF0 /* LaunchScreen.storyboard */; };
+		00D42CFC20EBBC7000147AF0 /* FoodListAPIConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D42CFB20EBBC7000147AF0 /* FoodListAPIConsumer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		00D42CEE20EBB87200147AF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00D42CF120EBB87200147AF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00D42CF320EBB87200147AF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00D42CFB20EBBC7000147AF0 /* FoodListAPIConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListAPIConsumer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		00D42CE620EBB87100147AF0 /* FoodSniffer */ = {
 			isa = PBXGroup;
 			children = (
+				00D42CFA20EBBC4900147AF0 /* API */,
 				00D42CF920EBBB8100147AF0 /* VC */,
 				00D42CE720EBB87100147AF0 /* AppDelegate.swift */,
 				00D42CEB20EBB87100147AF0 /* Main.storyboard */,
@@ -70,6 +73,14 @@
 				00D42CE920EBB87100147AF0 /* FoodListViewController.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		00D42CFA20EBBC4900147AF0 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				00D42CFB20EBBC7000147AF0 /* FoodListAPIConsumer.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +156,7 @@
 			files = (
 				00D42CEA20EBB87100147AF0 /* FoodListViewController.swift in Sources */,
 				00D42CE820EBB87100147AF0 /* AppDelegate.swift in Sources */,
+				00D42CFC20EBBC7000147AF0 /* FoodListAPIConsumer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

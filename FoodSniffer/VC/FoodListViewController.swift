@@ -12,8 +12,17 @@ class FoodListViewController: UIViewController {
 
     @IBOutlet weak var foodList: UITableView!
     
+    var foodItems:[FoodItem]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let c = FoodListAPIConsumer.init()
+        c.loadFoodList { (food) in
+            if let items = food{
+                self.foodItems = items
+                self.foodList.reloadData()
+            }
+        }
         
     }
 
@@ -25,12 +34,14 @@ extension FoodListViewController: UITableViewDelegate{
 
 extension FoodListViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.foodItems?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.foodList.dequeueReusableCell(withIdentifier: "food_cell_id")!
-        cell.textLabel?.text = "Test"
+        if let item = self.foodItems?[indexPath.row] {
+            cell.textLabel?.text = item.name
+        }
         return cell
     }
     

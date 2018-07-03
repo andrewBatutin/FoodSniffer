@@ -9,7 +9,8 @@
 import UIKit
 
 class FoodListViewController: UIViewController {
-
+    
+    
     @IBOutlet weak var foodList: UITableView!
     
     var foodItems:[FoodItem]?
@@ -19,10 +20,12 @@ class FoodListViewController: UIViewController {
         let c = FoodListAPIConsumer.init()
         c.loadFoodList { (food) in
             if let items = food{
-                self.foodItems = items
+                self.foodItems = self.filter(foodItems: items, by: Date())
                 self.foodList.reloadData()
             }
         }
+        
+        print( dateIntervals() )
         
     }
 
@@ -45,5 +48,36 @@ extension FoodListViewController:UITableViewDataSource{
         return cell
     }
     
+}
+
+extension FoodListViewController{
+    
+    
+    func dateIntervals() -> [DaySegments:DateInterval]{
+        
+        guard let morning = DateInterval(from: "08:00-13:00") else { fatalError() }
+        guard let aftrenoon = DateInterval(from: "13:00-18:00") else { fatalError() }
+        guard let evening = DateInterval(from: "18:00-08:00") else { fatalError() }
+        
+        return [
+            DaySegments.morning : morning,
+            DaySegments.afternoon : aftrenoon,
+            DaySegments.evening : evening
+        ]
+        
+    }
+    
+    
+    func filter(foodItems items:[FoodItem], by date:Date) -> [FoodItem]{
+        
+        
+        return items.filter { (item) -> Bool in
+            if let inteval = dateIntervals()[item.consumePeriod]{
+                return inteval.contains(date)
+            }
+            return false
+        }
+        
+    }
     
 }

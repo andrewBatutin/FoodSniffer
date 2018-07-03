@@ -13,6 +13,7 @@
 		00D42CEF20EBB87200147AF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00D42CEE20EBB87200147AF0 /* Assets.xcassets */; };
 		00D42CF220EBB87200147AF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00D42CF020EBB87200147AF0 /* LaunchScreen.storyboard */; };
 		00D42CFC20EBBC7000147AF0 /* FoodListAPIConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D42CFB20EBBC7000147AF0 /* FoodListAPIConsumer.swift */; };
+		00D42CFF20EBDC0800147AF0 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D42CFE20EBDC0800147AF0 /* Extentions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		00D42CF120EBB87200147AF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00D42CF320EBB87200147AF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00D42CFB20EBBC7000147AF0 /* FoodListAPIConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListAPIConsumer.swift; sourceTree = "<group>"; };
+		00D42CFE20EBDC0800147AF0 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		00D42CE620EBB87100147AF0 /* FoodSniffer */ = {
 			isa = PBXGroup;
 			children = (
+				00D42CFD20EBDBF200147AF0 /* Extentions */,
 				00D42CFA20EBBC4900147AF0 /* API */,
 				00D42CF920EBBB8100147AF0 /* VC */,
 				00D42CE720EBB87100147AF0 /* AppDelegate.swift */,
@@ -81,6 +84,14 @@
 				00D42CFB20EBBC7000147AF0 /* FoodListAPIConsumer.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		00D42CFD20EBDBF200147AF0 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				00D42CFE20EBDC0800147AF0 /* Extentions.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00D42CFF20EBDC0800147AF0 /* Extentions.swift in Sources */,
 				00D42CEA20EBB87100147AF0 /* FoodListViewController.swift in Sources */,
 				00D42CE820EBB87100147AF0 /* AppDelegate.swift in Sources */,
 				00D42CFC20EBBC7000147AF0 /* FoodListAPIConsumer.swift in Sources */,

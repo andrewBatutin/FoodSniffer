@@ -26,16 +26,31 @@ enum FoodAPIError:Error{
     case SomeError
 }
 
-class FoodListAPIConsumer{
+@objc
+class FoodListAPIConsumer : NSObject, URLSessionDelegate{
+    
+    let certificates: [Data] = {
+        let url = Bundle.main.url(forResource: "wwwdropboxcom", withExtension: "crt")!
+        let data = try! Data(contentsOf: url)
+        return [data]
+    }()
     
     let foodListURL = "https://www.dropbox.com/s/8ipgua5mfiakhxy/MockFoodListJSON.json?dl=1"
-    let session = URLSession(configuration: .default)
+    
     
     
     func loadFoodList(_ callback: @escaping ( [FoodItem]? ) -> ()){
         
         guard let foodUrl = URL(string: foodListURL) else { return }
+        let session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
         let dataTask = session.dataTask(with: foodUrl) { (data, response, error) in
+            
+            if error !=  nil {
+                DispatchQueue.main.async {
+                    callback(nil)
+                }
+                return
+            }
             
             guard let foodData = data else {
                 return
@@ -79,4 +94,21 @@ extension FoodListAPIConsumer{
         return nil
     }
     
+}
+
+extension FoodListAPIConsumer {
+    
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        if let trust = challenge.protectionSpace.serverTrust, SecTrustGetCertificateCount(trust) > 0 {
+            
+            if let certificate = SecTrustGetCertificateAtIndex(trust, 0) {
+                let data = SecCertificateCopyData(certificate) as Data
+                if certificates.contains(data) {
+                    completionHandler(.useCredential, URLCredential(trust: trust))
+                    return
+                }
+            }
+        }
+        completionHandler(.rejectProtectionSpace, nil)
+    }
 }

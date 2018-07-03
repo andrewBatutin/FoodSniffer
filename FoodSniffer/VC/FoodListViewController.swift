@@ -10,6 +10,8 @@ import UIKit
 
 class FoodListViewController: UIViewController {
     
+    let pullToRefresh = UIRefreshControl()
+    let c = FoodListAPIConsumer.init()
     
     @IBOutlet weak var foodList: UITableView!
     
@@ -17,16 +19,20 @@ class FoodListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let c = FoodListAPIConsumer.init()
+        self.foodList.refreshControl = pullToRefresh
+        self.foodList.refreshControl?.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        self.refreshData(self)
+    }
+    
+    @objc func refreshData(_ sender:Any){
         c.loadFoodList { (food) in
             if let items = food{
                 self.foodItems = self.filter(foodItems: items, by: Date())
                 self.foodList.reloadData()
+                
             }
+            self.foodList.refreshControl?.endRefreshing()
         }
-        
-        print( dateIntervals() )
-        
     }
 
 }
@@ -64,12 +70,10 @@ extension FoodListViewController{
             DaySegments.afternoon : aftrenoon,
             DaySegments.evening : evening
         ]
-        
     }
     
     
     func filter(foodItems items:[FoodItem], by date:Date) -> [FoodItem]{
-        
         
         return items.filter { (item) -> Bool in
             if let inteval = dateIntervals()[item.consumePeriod]{
@@ -77,7 +81,5 @@ extension FoodListViewController{
             }
             return false
         }
-        
     }
-    
 }

@@ -10,12 +10,12 @@ import UIKit
 
 class FoodListViewController: UIViewController {
     
-    let pullToRefresh = UIRefreshControl()
-    let apiConsumer = FoodListAPIConsumer.init()
+    private let pullToRefresh = UIRefreshControl()
+    private let apiConsumer = FoodListAPIConsumer.init()
     
     @IBOutlet weak var foodList: UITableView!
     
-    var foodItems:[FoodItem]?
+    private var foodItems:[FoodItem]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +25,7 @@ class FoodListViewController: UIViewController {
     }
     
     @objc func refreshData(_ sender:Any){
+        
         apiConsumer.loadFoodList { (food) in
             if let items = food{
                 self.foodItems = self.filter(foodItems: items, by: Date())
@@ -37,6 +38,7 @@ class FoodListViewController: UIViewController {
 }
 
 extension FoodListViewController:UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.foodItems?.count ?? 0
     }
@@ -53,8 +55,7 @@ extension FoodListViewController:UITableViewDataSource{
 
 extension FoodListViewController{
     
-    
-    func dateIntervals() -> [DaySegments:DateInterval]{
+    private func dateIntervals() -> [DaySegments:DateInterval]{
         
         guard let morning = DateInterval(from: "08:00-13:00") else { fatalError("wrong format") }
         guard let aftrenoon = DateInterval(from: "13:00-18:00") else { fatalError("wrong format") }
@@ -67,8 +68,7 @@ extension FoodListViewController{
         ]
     }
     
-    
-    func filter(foodItems items:[FoodItem], by date:Date) -> [FoodItem]{
+    private func filter(foodItems items:[FoodItem], by date:Date) -> [FoodItem]{
         
         return items.filter { (item) -> Bool in
             if let inteval = dateIntervals()[item.consumePeriod]{

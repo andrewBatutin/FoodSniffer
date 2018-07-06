@@ -10,7 +10,7 @@ import Foundation
 
 extension Date{
     
-    func midnight() -> Date{
+    fileprivate func midnight() -> Date{
         let calendar = Calendar.current
         return calendar.startOfDay(for: self)
     }
@@ -56,8 +56,8 @@ extension FoodListAPIConsumer{
     func mockData() -> [FoodItem]{
         return [
             FoodItem(name: "soup", consumePeriod: .morning),
-            FoodItem(name: "bannana", consumePeriod: .afternoon),
-            FoodItem(name: "whickey", consumePeriod: .evening)
+            FoodItem(name: "banana", consumePeriod: .afternoon),
+            FoodItem(name: "whiskey", consumePeriod: .evening)
         ]
     }
     

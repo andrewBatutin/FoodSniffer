@@ -24,7 +24,7 @@ struct FoodItem:Codable {
 }
 
 @objc
-class FoodListAPIConsumer : NSObject, URLSessionDelegate{
+final class FoodListAPIConsumer : NSObject, URLSessionDelegate{
     
     
     let foodListURL = "https://www.dropbox.com/s/8ipgua5mfiakhxy/MockFoodListJSON.json?dl=1"
@@ -36,7 +36,8 @@ class FoodListAPIConsumer : NSObject, URLSessionDelegate{
         let session = URLSession(configuration: .default)
         let dataTask = session.dataTask(with: foodUrl) { (data, response, error) in
             
-            if error !=  nil {
+            if let networkError = error {
+                print(networkError.localizedDescription)
                 DispatchQueue.main.async {
                     callback(nil)
                 }

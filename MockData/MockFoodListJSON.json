@@ -4,11 +4,23 @@
     "consumePeriod" : "morning"
   },
   {
-    "name" : "bannana",
+    "name" : "bacon & eggs",
+    "consumePeriod" : "morning"
+  },
+  {
+    "name" : "banana",
     "consumePeriod" : "afternoon"
   },
   {
-    "name" : "whickey",
+    "name" : "tea",
+    "consumePeriod" : "afternoon"
+  },
+  {
+    "name" : "whiskey",
+    "consumePeriod" : "evening"
+  },
+  {
+    "name" : "beer",
     "consumePeriod" : "evening"
   }
 ]

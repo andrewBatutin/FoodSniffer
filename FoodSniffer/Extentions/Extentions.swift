@@ -17,7 +17,6 @@ extension Date{
     
 }
 
-
 extension DateInterval{
     
     private static func timeInterval(from time:String.SubSequence) -> TimeInterval?{
@@ -40,7 +39,6 @@ extension DateInterval{
         guard let startTimeInterval = timeInterval(from: startTime) else { return nil }
         guard var endTimeInterval = timeInterval(from: endTime) else { return nil }
         
-        
         if endTimeInterval < startTimeInterval{
             endTimeInterval += 24 * 3600
         }
@@ -51,5 +49,27 @@ extension DateInterval{
         
         return (startDate, endDate)
     }
+}
+
+extension FoodListAPIConsumer{
+    
+    func mockData() -> [FoodItem]{
+        return [
+            FoodItem(name: "soup", consumePeriod: .morning),
+            FoodItem(name: "bannana", consumePeriod: .afternoon),
+            FoodItem(name: "whickey", consumePeriod: .evening)
+        ]
+    }
+    
+    func mockJSON() -> String?{
+        let coder = JSONEncoder()
+        coder.outputFormatting = .prettyPrinted
+        if let res = try? coder.encode(self.mockData()),
+            let str = String(data: res, encoding: .utf8){
+            return str
+        }
+        return nil
+    }
     
 }
+

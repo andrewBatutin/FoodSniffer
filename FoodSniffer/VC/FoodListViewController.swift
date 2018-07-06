@@ -11,7 +11,7 @@ import UIKit
 class FoodListViewController: UIViewController {
     
     let pullToRefresh = UIRefreshControl()
-    let c = FoodListAPIConsumer.init()
+    let apiConsumer = FoodListAPIConsumer.init()
     
     @IBOutlet weak var foodList: UITableView!
     
@@ -25,20 +25,15 @@ class FoodListViewController: UIViewController {
     }
     
     @objc func refreshData(_ sender:Any){
-        c.loadFoodList { (food) in
+        apiConsumer.loadFoodList { (food) in
             if let items = food{
                 self.foodItems = self.filter(foodItems: items, by: Date())
                 self.foodList.reloadData()
-                
             }
             self.foodList.refreshControl?.endRefreshing()
         }
     }
 
-}
-
-extension FoodListViewController: UITableViewDelegate{
-    
 }
 
 extension FoodListViewController:UITableViewDataSource{
@@ -61,9 +56,9 @@ extension FoodListViewController{
     
     func dateIntervals() -> [DaySegments:DateInterval]{
         
-        guard let morning = DateInterval(from: "08:00-13:00") else { fatalError() }
-        guard let aftrenoon = DateInterval(from: "13:00-18:00") else { fatalError() }
-        guard let evening = DateInterval(from: "18:00-08:00") else { fatalError() }
+        guard let morning = DateInterval(from: "08:00-13:00") else { fatalError("wrong format") }
+        guard let aftrenoon = DateInterval(from: "13:00-18:00") else { fatalError("wrong format") }
+        guard let evening = DateInterval(from: "18:00-08:00") else { fatalError("wrong format") }
         
         return [
             DaySegments.morning : morning,

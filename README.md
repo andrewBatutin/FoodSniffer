@@ -1,0 +1,2 @@
+# FoodSniffer
+FoodSniffer test project
